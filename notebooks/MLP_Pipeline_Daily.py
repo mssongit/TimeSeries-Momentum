@@ -1,15 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 import sys
 sys.path.append('../')
-
-
-# In[2]:
-
 
 import numpy as np
 import pandas as pd
@@ -20,10 +13,6 @@ import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 from keras.callbacks import EarlyStopping, ModelCheckpoint, Callback
 
-
-# In[3]:
-
-
 from utils.callbacks import GetBest
 from utils.models import MultiLayerPerceptron
 from utils.data_loaders import load_clc_db_records
@@ -31,32 +20,16 @@ from utils.features import construct_features_batch
 from utils.data_handling import merge_asset_data, split_by_date
 from utils.loss_functions import return_loss, sharpe_loss, return_loss_dummy, sharpe_loss_dummy
 
-
-# In[4]:
-
-
 from data.data_config import ASSETS_TO_USE
-
-
-# In[5]:
-
 
 config = tf.ConfigProto(device_count = {'GPU': 0 , 'CPU': 3}) 
 sess = tf.Session(config=config) 
 K.set_session(sess)
 
-
-# In[6]:
-
-
 RAD_DATA_PATH = '../data/clc/rad/'
 FED_DATA_PATH = '../data/DFF.csv'
 
-
 # ## Load Asset Data & Prepare Features
-
-# In[7]:
-
 
 # load asset data from clc database
 clc = load_clc_db_records(RAD_DATA_PATH, FED_DATA_PATH, ASSETS_TO_USE)
@@ -64,33 +37,16 @@ clc = construct_features_batch(clc)
 df = merge_asset_data(clc, create_time_asset_index=True)
 df.dropna(inplace=True)
 
-
-# In[8]:
-
-
 # create windowed subset of the data
 date_breakpoints = [datetime(1990, 1, 1)] + [datetime(year, 1, 1) for year in range(1995, 2021)]
 date_breakpoints = [datetime(1990, 1, 1)] + [datetime(year, 1, 1) for year in range(1995, 2021, 5)]
 print(date_breakpoints)
 data_set = split_by_date(df, date_breakpoints)
 
-
-# In[9]:
-
-
 data_set[0].head()
-
-
-# In[ ]:
-
-
 data_set[0].tail()
 
-
 # ## Train Multilayer Perceptron DMN
-
-# In[1]:
-
 
 # strategy parameters
 target_vola = 0.15
@@ -130,9 +86,6 @@ callbacks = [
 ]
 shuffle = False  # shuffle training data on each epoch
 normalize_features = True
-
-
-# In[ ]:
 
 
 # # define an objective function
@@ -188,10 +141,6 @@ normalize_features = True
 # from hyperopt import fmin, tpe, space_eval
 # best = fmin(hyperopt_objective, space, algo=tpe.suggest, max_evals=100)
 
-
-# In[ ]:
-
-
 # declare MLP model
 MLP = MultiLayerPerceptron(
     num_features=len(feature_labels), 
@@ -205,10 +154,6 @@ MLP = MultiLayerPerceptron(
     normalize_features=normalize_features
 )
 MLP.summary()
-
-
-# In[ ]:
-
 
 turnover, backtest_returns, backtest_excess_returns = [], [], []
 temp_series = pd.DataFrame()  # use this to expand rolling window
