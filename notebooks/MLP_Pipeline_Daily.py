@@ -46,8 +46,7 @@ data_set = split_by_date(df, date_breakpoints)
 data_set[0].head()
 data_set[0].tail()
 
-# ## Train Multilayer Perceptron DMN
-
+## Train Multilayer Perceptron DMN
 # strategy parameters
 target_vola = 0.15
 use_expanding_window = True # if False uses rolling window during training
@@ -88,9 +87,9 @@ shuffle = False  # shuffle training data on each epoch
 normalize_features = True
 
 
-# # define an objective function
+## define an objective function
 
-# # construct features and targets
+## construct features and targets
 # data_series = data_set[0]
 # val_series = data_set[1]
 # scaler = StandardScaler()
@@ -123,7 +122,7 @@ normalize_features = True
     
 #     return np.mean(history.history['val_loss'][2:-5])
     
-# # define a search space
+## define a search space
 # from hyperopt import hp
 # activation_funcs = ['sigmoid', 'relu']
 # space = {
