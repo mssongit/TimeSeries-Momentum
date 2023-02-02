@@ -4,7 +4,6 @@ from keras.layers import Dense, Dropout
 from sklearn.base import BaseEstimator
 from sklearn.preprocessing import StandardScaler
 
-
 class MultiLayerPerceptron(BaseEstimator):
 
     def __init__(self, num_features, hidden_layers=1, hidden_neurons=5, hidden_dropout=0.2, input_dropout=0,
@@ -107,7 +106,7 @@ if __name__ == '__main__':
     from sklearn.metrics import mean_squared_error
 
     # generate fake data
-    num_train = 9000
+    num_train = 10000
     num_test = 1000
     num_data = num_train + num_test
     X = np.random.uniform(0, 1, (num_data, 3))
