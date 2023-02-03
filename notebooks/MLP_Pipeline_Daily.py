@@ -100,10 +100,7 @@ normalize_features = True
 # X_val = scaler.transform(val_series[feature_labels].values)
 # y_val = val_series[target_labels].values
 
-
 # def hyperopt_objective(args, X=X, y=y, X_val=X_val, y_val=y_val):
-    
-#     print(args)
 
 #     # define model
 #     model = construct_mlp_model(**args)
@@ -119,7 +116,6 @@ normalize_features = True
 #         shuffle=False,
 #         callbacks=[earlyStopping]
 #     )
-    
 #     return np.mean(history.history['val_loss'][2:-5])
     
 ## define a search space
