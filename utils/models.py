@@ -3,6 +3,9 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from sklearn.base import BaseEstimator
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import mean_squared_error
+import numpy as np
+
 
 class MultiLayerPerceptron(BaseEstimator):
 
@@ -101,9 +104,6 @@ class MultiLayerPerceptron(BaseEstimator):
 
 
 if __name__ == '__main__':
-
-    import numpy as np
-    from sklearn.metrics import mean_squared_error
 
     # generate fake data
     num_train = 10000
