@@ -12,8 +12,8 @@ def merge_asset_data(asset_to_df_map, create_time_asset_index=True):
         combined_assets.sort_index(inplace=True)
         combined_assets['Asset_Col'] = combined_assets['Asset']
         combined_assets['Date_Col'] = combined_assets['Date']
-        del combined_assets['Date']
         del combined_assets['Asset']
+        del combined_assets['Date']
 
     return combined_assets
 
