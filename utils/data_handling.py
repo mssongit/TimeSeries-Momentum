@@ -19,7 +19,6 @@ def merge_asset_data(asset_to_df_map, create_time_asset_index=True):
 
 
 def split_by_date(df, date_breakpoints):
-
     data_sets = []
     for idx, start in enumerate(date_breakpoints):
         if idx == len(date_breakpoints) - 1:
