@@ -8,7 +8,6 @@ def calc_normalized_period_returns(daily_returns, daily_std, period):
 
 
 def calc_macd_features(price, short_period, long_period):
-
     short_ma = price.ewm(span=short_period, min_periods=short_period).mean()
     long_ma = price.ewm(span=long_period, min_periods=long_period).mean()
     ewmstd_63 = price.ewm(span=63).std()
@@ -19,7 +18,6 @@ def calc_macd_features(price, short_period, long_period):
     return z
 
 def calc_macd_binary(price, short_period, long_period):
-
     short_ma = price.ewm(span=short_period, min_periods=short_period).mean()
     long_ma = price.ewm(span=long_period, min_periods=long_period).mean()
     signal = short_ma >= long_ma
@@ -28,7 +26,6 @@ def calc_macd_binary(price, short_period, long_period):
 
 
 def construct_features_single_asset(df, ewmastd_span=60, inplace=False, asset_label=None):
-
     if not inplace:
         df = df.copy()
 
@@ -59,7 +56,6 @@ def construct_features_single_asset(df, ewmastd_span=60, inplace=False, asset_la
 
 
 def construct_features_batch(df_map):
-
     for asset, df in df_map.items():
         construct_features_single_asset(df, inplace=True, asset_label=asset)
 
