@@ -60,6 +60,3 @@ def construct_features_batch(df_map):
         construct_features_single_asset(df, inplace=True, asset_label=asset)
 
     return df_map
-
-
-
